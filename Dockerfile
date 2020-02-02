@@ -97,7 +97,7 @@ RUN pip install -U numpy && \
 #RUN pip install pyarrow graphistry 
 #pytext-nlp flair
 RUN pip install tensorflow-gpu tensorflow-datasets --ignore-installed && \
-    pip install kubeflow-fairing
+    pip install kubeflow-fairing kubeflow-kale
     #pip install https://github.com/mfojtak/mfojtak.github.io/blob/master/tensorflow_addons-0.2.0.dev0-cp37-cp37m-linux_x86_64.whl?raw=true && \
     #export CUDA_HOME=/usr/local/cuda && export PATH=$PATH:$CUDA_HOME/bin && pip install -U spacy[cuda100]
 #RUN python -m spacy download en && pip install dask dask-kubernetes distributed --upgrade
@@ -111,6 +111,7 @@ RUN conda install -c conda-forge xeus-python=0.6.7 notebook>=6 ptvsd nodejs && \
     #conda install -c conda-forge/label/prerelease-jupyterlab jupyterlab
     conda install -c conda-forge jupyterlab
 RUN jupyter labextension install @jupyterlab/debugger && \
+    jupyter labextension install kubeflow-kale-launcher && \
     conda install --yes numba bokeh libgcc wget readline && \
     conda install -c conda-forge python-language-server flake8 autopep8 && \
     conda install faiss-cpu -c pytorch
