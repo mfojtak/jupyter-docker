@@ -119,13 +119,6 @@ RUN jupyter labextension install @jupyterlab/debugger && \
     #conda install --yes -c conda-forge onnx jsanimation bqplot readline boost tornado pika av celery aiohttp \
     #python-kubernetes opencv jupyterlab pyzmq pymapd scrapy
 
-# Install Tini - used as entrypoint for container
-RUN cd /tmp && \
-    wget --quiet https://github.com/krallin/tini/releases/download/v0.18.0/tini && \
-    echo "12d20136605531b09a2c2dac02ccee85e1b874eb322ef6baf7561cd93f93c855 *tini" | sha256sum -c - && \
-    mv tini /usr/local/bin/tini && \
-    chmod +x /usr/local/bin/tini
-
 RUN curl -fsSL https://get.docker.com/ | sh
 
 RUN curl -fSsL https://github.com/cdr/code-server/releases/download/2.1698/code-server2.1698-vsc1.41.1-linux-x86_64.tar.gz -o code-server.tar.gz && \
