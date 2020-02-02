@@ -108,7 +108,8 @@ RUN pip install tensorflow-gpu tensorflow-datasets --ignore-installed && \
 #RUN conda install --yes cling -c QuantStack -c conda-forge && \
 #    conda install --yes xeus-cling xwidgets xplot widgetsnbextension -c QuantStack
 RUN conda install -c conda-forge xeus-python=0.6.7 notebook>=6 ptvsd nodejs && \
-    conda install -c conda-forge/label/prerelease-jupyterlab jupyterlab
+    #conda install -c conda-forge/label/prerelease-jupyterlab jupyterlab
+    conda install -c conda-forge jupyterlab
 RUN jupyter labextension install @jupyterlab/debugger && \
     conda install --yes numba bokeh libgcc wget readline && \
     conda install -c conda-forge python-language-server flake8 autopep8 && \
@@ -138,4 +139,5 @@ ADD start.sh /start.sh
 RUN chmod +x /start.sh
 EXPOSE 8888 22 3000
 ENV NB_PREFIX /
+ENV NB_DIR /home/jovyan
 ENTRYPOINT ["/start.sh"]
