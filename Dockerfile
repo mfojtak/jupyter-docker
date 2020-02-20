@@ -109,13 +109,14 @@ RUN pip install tensorflow-gpu tensorflow-datasets --ignore-installed && \
 #    conda install --yes xeus-cling xwidgets xplot widgetsnbextension -c QuantStack
 RUN conda install -c conda-forge xeus-python=0.6.7 notebook>=6 ptvsd nodejs && \
     #conda install -c conda-forge/label/prerelease-jupyterlab jupyterlab
-    conda install -c conda-forge jupyterlab
+    conda install -c conda-forge jupyterlab && \
+    pip uninstall jedi
 RUN jupyter labextension install @jupyterlab/debugger && \
     jupyter labextension install kubeflow-kale-launcher && \
     conda install --yes numba bokeh libgcc wget readline && \
     conda install -c conda-forge python-language-server flake8 autopep8 && pip install --pre jupyter-lsp && \
     jupyter labextension install @krassowski/jupyterlab-lsp && \
-    conda install faiss-cpu -c pytorch
+    conda install faiss-cpu -c pytorch && conda install jedi
     #conda install -c nvidia -c rapidsai -c numba -c conda-forge -c defaults cudf=0.4.0
     #conda install --yes -c conda-forge onnx jsanimation bqplot readline boost tornado pika av celery aiohttp \
     #python-kubernetes opencv jupyterlab pyzmq pymapd scrapy
