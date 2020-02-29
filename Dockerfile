@@ -112,9 +112,9 @@ RUN conda install -c conda-forge xeus-python=0.6.7 notebook>=6 ptvsd nodejs && \
     #conda install -c conda-forge/label/prerelease-jupyterlab jupyterlab
     conda install --yes -c conda-forge jupyterlab && \
     pip uninstall --yes jedi
-RUN jupyter labextension install @jupyterlab/debugger && \
-    jupyter labextension install kubeflow-kale-launcher && jupyter labextension disable kubeflow-kale-launcher && \
-    conda install --yes numba bokeh libgcc wget readline && \
+#RUN jupyter labextension install kubeflow-kale-launcher && jupyter labextension disable kubeflow-kale-launcher && \
+    #jupyter labextension install @jupyterlab/debugger && \
+RUN conda install --yes numba bokeh libgcc wget readline && \
     conda install -c conda-forge python-language-server flake8 autopep8 && pip install --pre jupyter-lsp && \
     jupyter labextension install @krassowski/jupyterlab-lsp && \
     conda install faiss-cpu -c pytorch && conda install jedi
