@@ -35,18 +35,12 @@ RUN apt-get update && apt-get install -y software-properties-common && \
     dnsutils net-tools \
     wget \
     git \
-    zlib1g-dev swig \
     build-essential libprotobuf-dev protobuf-compiler \
     fonts-dejavu \
-    libgtk2.0-0 \
     gfortran libibverbs-dev \
     apt-transport-https \
     unzip \
     pkg-config \
-    libaio1 \
-    libgl1-mesa-glx freeglut3-dev \
-    libx264-dev libvpx-dev \
-    fftw3-dev \
     openssh-server xvfb \
     gcc curl && apt-get clean && \
     rm -rf /var/lib/apt/lists/* && \
@@ -93,7 +87,7 @@ ENV LD_LIBRARY_PATH /opt/conda/lib:$LD_LIBRARY_PATH
 RUN pip install -U numpy && \
     pip install keras gym lmdb nest_asyncio bqplot aiohttp celery \
     dash dash-html-components dash-core-components networkx sklearn && \
-    pip install gym[atari] pyglet==1.2.4 && \
+    #pip install gym[atari] pyglet && \
     pip install torch torchvision torchtext 
 #RUN pip install pyarrow graphistry 
 #pytext-nlp flair
@@ -141,5 +135,9 @@ ENV NB_DIR /home/jovyan
 
 RUN echo "dash dash/sh boolean false" | debconf-set-selections
 RUN DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
+RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && locale-gen
+ENV LANG en_US.UTF-8  
+ENV LANGUAGE en_US:en  
+ENV LC_ALL en_US.UTF-8     
 
 ENTRYPOINT ["/start.sh"]
