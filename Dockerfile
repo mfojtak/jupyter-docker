@@ -136,4 +136,8 @@ RUN chmod +x /start.sh
 EXPOSE 8888 22 3000
 ENV NB_PREFIX /
 ENV NB_DIR /home/jovyan
+
+RUN echo "dash dash/sh boolean false" | debconf-set-selections
+RUN DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
+
 ENTRYPOINT ["/start.sh"]
