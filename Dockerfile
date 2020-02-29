@@ -28,6 +28,7 @@ MAINTAINER Michal Fojtak <mfojtak@seznam.cz>
 
 RUN apt-get update && apt-get install -y software-properties-common && \
     apt-get install -y iputils-ping \
+    locales \
     nano \
     cifs-utils \
     ca-certificates \
