@@ -103,8 +103,7 @@ RUN pip install tensorflow-gpu tensorflow-datasets --ignore-installed && \
 #RUN conda install --yes cling -c QuantStack -c conda-forge && \
 #    conda install --yes xeus-cling xwidgets xplot widgetsnbextension -c QuantStack
 RUN conda install -c conda-forge xeus-python=0.6.7 notebook>=6 ptvsd nodejs && \
-    #conda install -c conda-forge/label/prerelease-jupyterlab jupyterlab
-    conda install --yes -c conda-forge jupyterlab && \
+    conda install --yes -c conda-forge jupyterlab=1.2.6 && \
     pip uninstall --yes jedi
 #RUN jupyter labextension install kubeflow-kale-launcher && jupyter labextension disable kubeflow-kale-launcher && \
     #jupyter labextension install @jupyterlab/debugger && \
