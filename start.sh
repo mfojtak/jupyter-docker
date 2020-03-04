@@ -8,5 +8,5 @@
 #tensorboard --logdir /data/tb_logs &
 #cd theia
 #yarn theia start /data --hostname=0.0.0.0 &
-code-server /root --auth none /root &
+code-server --auth none /data /root &
 jupyter notebook --allow-root --no-browser --notebook-dir=$NB_DIR --ip 0.0.0.0 --NotebookApp.base_url=$NB_PREFIX $*
