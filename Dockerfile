@@ -34,7 +34,7 @@ RUN apt-get update && apt-get install -y software-properties-common && \
     ca-certificates \
     dnsutils net-tools \
     wget \
-    git git-lfs \
+    git \
     build-essential libprotobuf-dev protobuf-compiler \
     fonts-dejavu \
     gfortran libibverbs-dev \
