@@ -117,9 +117,9 @@ RUN conda install --yes numba bokeh libgcc wget readline && \
 
 RUN curl -fsSL https://get.docker.com/ | sh
 
-RUN curl -fSsL https://github.com/cdr/code-server/releases/download/2.1698/code-server2.1698-vsc1.41.1-linux-x86_64.tar.gz -o code-server.tar.gz && \
+RUN curl -fSsL https://github.com/cdr/code-server/releases/download/3.0.0/code-server-3.0.0-linux-x86_64.tar.gz -o code-server.tar.gz && \
     tar xvzf code-server.tar.gz && \
-    cp code-server2.1698-vsc1.41.1-linux-x86_64/code-server /usr/bin/ && \
+    cp code-server-3.0.0-linux-x86_64/code-server /usr/bin/ && \
     code-server --install-extension ms-python.python
 #RUN ldconfig /usr/local/cuda-9.0/targets/x86_64-linux/lib/stubs && \
 #    pip install --no-cache-dir horovod && \
