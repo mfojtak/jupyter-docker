@@ -115,7 +115,7 @@ RUN conda install --yes numba bokeh libgcc wget readline && \
     #conda install --yes -c conda-forge onnx jsanimation bqplot readline boost tornado pika av celery aiohttp \
     #python-kubernetes opencv jupyterlab pyzmq pymapd scrapy
 
-RUN curl -fsSL https://get.docker.com/ | sh
+#RUN curl -fsSL https://get.docker.com/ | sh
 
 RUN curl -fSsL https://github.com/cdr/code-server/releases/download/3.0.0/code-server-3.0.0-linux-x86_64.tar.gz -o code-server.tar.gz && \
     tar xvzf code-server.tar.gz && \
