@@ -133,6 +133,7 @@ ENV NB_PREFIX /
 ENV NB_DIR /home/jovyan
 
 RUN echo "dash dash/sh boolean false" | debconf-set-selections
+RUN git config --global http.sslverify false
 RUN DEBIAN_FRONTEND=noninteractive dpkg-reconfigure dash
 RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && locale-gen
 ENV LANG en_US.UTF-8  
