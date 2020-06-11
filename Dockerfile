@@ -85,7 +85,7 @@ ENV LD_LIBRARY_PATH /opt/conda/lib:$LD_LIBRARY_PATH
 
 # TODO: all these packages should probably be versioned
 RUN pip install -U numpy && \
-    pip install keras gym lmdb nest_asyncio bqplot aiohttp celery \
+    pip install keras gym lmdb nest_asyncio bqplot aiohttp celery nltk \
     dash dash-html-components dash-core-components networkx sklearn && \
     #pip install gym[atari] pyglet && \
     pip install torch torchvision torchtext 
