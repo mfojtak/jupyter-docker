@@ -110,16 +110,16 @@ RUN conda install -c conda-forge xeus-python=0.6.7 notebook>=6 ptvsd nodejs && \
 RUN conda install --yes numba bokeh libgcc wget readline && \
     conda install -c conda-forge python-language-server flake8 autopep8 && pip install jupyter-lsp && \
     #jupyter labextension install @krassowski/jupyterlab-lsp@1.0.0 && \
-    conda install faiss-cpu -c pytorch
+    conda install faiss-cpu -c pytorch && conda install jedi
     #conda install -c nvidia -c rapidsai -c numba -c conda-forge -c defaults cudf=0.4.0
     #conda install --yes -c conda-forge onnx jsanimation bqplot readline boost tornado pika av celery aiohttp \
     #python-kubernetes opencv jupyterlab pyzmq pymapd scrapy
 
 #RUN curl -fsSL https://get.docker.com/ | sh
 
-RUN curl -fSsL https://github.com/cdr/code-server/releases/download/3.4.1/code-server-3.4.1-linux-x86_64.tar.gz -o code-server.tar.gz && \
+RUN curl -fSsL https://github.com/cdr/code-server/releases/download/3.3.1/code-server-3.3.1-linux-x86_64.tar.gz -o code-server.tar.gz && \
     tar xvzf code-server.tar.gz && \
-    ln -s /code-server-3.4.1-linux-x86_64/code-server /usr/bin/code-server
+    ln -s /code-server-3.3.1-linux-x86_64/code-server /usr/bin/code-server
     #code-server --install-extension ms-python.python
 #RUN ldconfig /usr/local/cuda-9.0/targets/x86_64-linux/lib/stubs && \
 #    pip install --no-cache-dir horovod && \
