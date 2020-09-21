@@ -117,7 +117,7 @@ RUN conda install --yes numba bokeh libgcc wget readline && \
 
 #RUN curl -fsSL https://get.docker.com/ | sh
 
-RUN curl -fSsL https://github.com/cdr/code-server/releases/download/3.5.0/code-server-3.5.0-linux-x86_64.tar.gz -o code-server.tar.gz && \
+RUN curl -fSsL https://github.com/cdr/code-server/releases/download/v3.5.0/code-server-3.5.0-linux-x86_64.tar.gz -o code-server.tar.gz && \
     tar xvzf code-server.tar.gz && \
     ln -s /code-server-3.5.0-linux-x86_64/code-server /usr/bin/code-server
     #code-server --install-extension ms-python.python
