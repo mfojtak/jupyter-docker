@@ -92,7 +92,7 @@ RUN pip install -U numpy && \
 #RUN pip install pyarrow graphistry 
 #pytext-nlp flair
 RUN pip install tensorflow tensorflow-text tensorflow-addons tensorflow-hub tensorflow-datasets --ignore-installed && \
-    pip install kubeflow-fairing kubeflow-kale
+    pip install kubeflow-fairing
     #pip install https://github.com/mfojtak/mfojtak.github.io/blob/master/tensorflow_addons-0.2.0.dev0-cp37-cp37m-linux_x86_64.whl?raw=true && \
     #export CUDA_HOME=/usr/local/cuda && export PATH=$PATH:$CUDA_HOME/bin && pip install -U spacy[cuda100]
 #RUN python -m spacy download en && pip install dask dask-kubernetes distributed --upgrade
