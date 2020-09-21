@@ -110,7 +110,7 @@ RUN conda install -c conda-forge xeus-python=0.6.7 notebook>=6 ptvsd nodejs && \
 RUN conda install --yes numba bokeh libgcc wget readline && \
     conda install -c conda-forge python-language-server flake8 autopep8 && pip install jupyter-lsp && \
     #jupyter labextension install @krassowski/jupyterlab-lsp@1.0.0 && \
-    conda install faiss-cpu -c pytorch && conda install jedi
+    pip install faiss-cpu && conda install jedi
     #conda install -c nvidia -c rapidsai -c numba -c conda-forge -c defaults cudf=0.4.0
     #conda install --yes -c conda-forge onnx jsanimation bqplot readline boost tornado pika av celery aiohttp \
     #python-kubernetes opencv jupyterlab pyzmq pymapd scrapy
