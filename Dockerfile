@@ -27,7 +27,7 @@
 FROM nvidia/cuda:11.1-devel-ubuntu20.04
 MAINTAINER Michal Fojtak <mfojtak@seznam.cz>
 
-RUN DEBIAN_FRONTEND="noninteractive" apt-get update && apt-get install -y software-properties-common && \
+RUN DEBIAN_FRONTEND="noninteractive" apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y software-properties-common && \
     apt-get install -y iputils-ping \
     locales \
     nano \
