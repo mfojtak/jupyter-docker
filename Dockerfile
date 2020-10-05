@@ -23,7 +23,7 @@
 #    yarn --cache-folder ./ycache && rm -rf ./ycache && \
 #    yarn theia build && echo "Theia Finished"
 
-FROM nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04
+FROM nvidia/cuda:10.1-cudnn8-devel-ubuntu18.04
 MAINTAINER Michal Fojtak <mfojtak@seznam.cz>
 
 RUN apt-get update && apt-get install -y software-properties-common && \
