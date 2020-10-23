@@ -55,8 +55,8 @@ RUN apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y softwa
 #ADD id_rsa /root/.ssh/id_rsa
 #RUN chmod 400 /root/.ssh/id_rsa
 
-#RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl && \
-#    chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl
+RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl && \
+    chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl
 
 #install clangd
 #RUN wget -O - https://apt.llvm.org/llvm-snapshot.gpg.key | apt-key add - && \
