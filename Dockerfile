@@ -118,7 +118,7 @@ RUN conda install --yes numba bokeh libgcc wget readline && \
 
 #RUN curl -fsSL https://get.docker.com/ | sh
 
-RUN curl -fsSL https://code-server.dev/install.sh | sh
+RUN curl -fsSL https://code-server.dev/install.sh | sh --version 3.7.0
 #RUN curl -fSsL https://github.com/cdr/code-server/releases/download/3.4.1/code-server-3.4.1-linux-x86_64.tar.gz -o code-server.tar.gz && \
 #    tar xvzf code-server.tar.gz && \
 #    ln -s /code-server-3.4.1-linux-x86_64/code-server /usr/bin/code-server
