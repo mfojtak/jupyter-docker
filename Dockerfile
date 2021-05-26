@@ -23,7 +23,7 @@
 #    yarn --cache-folder ./ycache && rm -rf ./ycache && \
 #    yarn theia build && echo "Theia Finished"
 
-FROM nvidia/cuda:10.1-cudnn7-devel-ubuntu18.04
+FROM nvidia/cuda:11.3.0-cudnn8-devel-ubuntu20.04
 MAINTAINER Michal Fojtak <mfojtak@seznam.cz>
 
 RUN apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y software-properties-common && \
@@ -73,7 +73,7 @@ RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
     wget --quiet https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/anaconda.sh && \
     /bin/bash ~/anaconda.sh -b -p /opt/conda && \
     rm ~/anaconda.sh && \
-    apt remove -y python3.6 python2.7 python-minimal && apt autoremove -y && cp /opt/conda/bin/python /usr/bin/python
+    apt remove -y python3 && apt autoremove -y && cp /opt/conda/bin/python /usr/bin/python
 ENV PATH /opt/conda/bin:$PATH
 ENV LD_LIBRARY_PATH /opt/conda/lib:$LD_LIBRARY_PATH
 
