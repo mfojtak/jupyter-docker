@@ -40,6 +40,8 @@ RUN apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y softwa
     #gfortran libibverbs-dev \
     apt-transport-https \
     unzip \
+    poppler-utils \
+    tesseract-ocr \
     #pkg-config \
     #openssh-server xvfb \
     gcc curl && apt-get clean
