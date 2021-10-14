@@ -79,13 +79,6 @@ RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
 ENV PATH /opt/conda/bin:$PATH
 ENV LD_LIBRARY_PATH /opt/conda/lib:$LD_LIBRARY_PATH
 
-#RUN conda update -n base conda && conda update ipython && pip install --upgrade pip && \
-#    apt remove -y python3.5 python2.7 python-minimal && apt autoremove -y && cp /opt/conda/bin/python /usr/bin/python
-    #conda install --quiet --yes r-base r-irkernel r-plyr r-devtools r-shiny r-rmarkdown r-forecast r-rsqlite \
-    #r-reshape2 r-nycflights13 r-caret r-rcurl r-crayon r-randomforest && conda clean -tipsy && \
-    #R -e "install.packages(c('shinythemes','DT'), repos='http://cran.us.r-project.org')"
-
-# TODO: all these packages should probably be versioned
 RUN pip install -U numpy && \
     pip install keras gym lmdb nest_asyncio bqplot aiohttp celery nltk \
     dash dash-html-components dash-core-components networkx sklearn && \
