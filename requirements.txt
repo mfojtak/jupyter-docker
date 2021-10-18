@@ -30,6 +30,7 @@ python-multipart
 pytesseract
 pdf2image
 transformers
+sentencepiece
 ray
 ray[serve]
 aioredis
