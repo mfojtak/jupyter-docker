@@ -7,10 +7,15 @@ dash
 dash-html-components 
 dash-core-components 
 networkx 
-sklearn
-torch 
-torchvision 
+scikit-learn
+--extra-index-url https://download.pytorch.org/whl/cu113
+torch
+--extra-index-url https://download.pytorch.org/whl/cu113
+torchvision
+--extra-index-url https://download.pytorch.org/whl/cu113
 torchtext
+torchmetrics
+pytorch-lightning
 tensorflow 
 tensorflow-text 
 tensorflow-addons 
@@ -32,8 +37,12 @@ pdf2image
 transformers
 sentencepiece
 ray
-ray[serve]
 aioredis
 dask
 modin
 pandas
+opencv-python-headless
+shapely
+sentence-transformers
+layoutparser
+pydantic

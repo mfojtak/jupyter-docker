@@ -1,7 +1,9 @@
-FROM nvidia/cuda:11.3.0-cudnn8-devel-ubuntu20.04
+ARG BASE_IMAGE="nvidia/cuda:11.3.0-cudnn8-devel-ubuntu20.04"
+FROM ${BASE_IMAGE}
 MAINTAINER Michal Fojtak <mfojtak@seznam.cz>
 
 RUN apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y software-properties-common && \
+    add-apt-repository ppa:alex-p/tesseract-ocr-devel && apt-get update && \
     apt-get install -y iputils-ping \
     #locales \
     nano \
@@ -15,7 +17,7 @@ RUN apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y softwa
     #gfortran libibverbs-dev \
     apt-transport-https \
     unzip \
-    poppler-utils \
+    #poppler-utils \
     tesseract-ocr \
     #pkg-config \
     #openssh-server xvfb \
@@ -31,26 +33,31 @@ RUN apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y softwa
 #ADD id_rsa.pub /root/.ssh/authorized_keys
 #ADD id_rsa /root/.ssh/id_rsa
 #RUN chmod 400 /root/.ssh/id_rsa
-
 RUN curl -LO https://storage.googleapis.com/kubernetes-release/release/`curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt`/bin/linux/amd64/kubectl && \
     chmod +x ./kubectl && mv ./kubectl /usr/local/bin/kubectl
 
 
 RUN echo 'export PATH=/opt/conda/bin:$PATH' > /etc/profile.d/conda.sh && \
-    #wget --quiet https://repo.anaconda.com/archive/Anaconda3-2019.10-Linux-x86_64.sh -O ~/anaconda.sh && \
     wget --quiet https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/anaconda.sh && \
     /bin/bash ~/anaconda.sh -b -p /opt/conda && \
     rm ~/anaconda.sh && \
-    apt remove -y python3 && apt autoremove -y && cp /opt/conda/bin/python /usr/bin/python
+    apt remove -y python3 && apt autoremove -y && \
+    cp /opt/conda/bin/python /usr/bin/python
 ENV PATH /opt/conda/bin:$PATH
-ENV LD_LIBRARY_PATH /opt/conda/lib:$LD_LIBRARY_PATH
+#ENV LD_LIBRARY_PATH /opt/conda/lib:$LD_LIBRARY_PATH
+RUN conda update conda && conda install pip
 
 COPY requirements.txt ./
 RUN pip install -r requirements.txt
+RUN pip install cudf-cu11 dask-cudf-cu11 cuml-cu11 cugraph-cu11 --extra-index-url=https://pypi.nvidia.com && pip uninstall -y cupy-cuda115 && pip install cupy-cuda11x 
+RUN pip install six && pip install protobuf==3.20.* && pip cache purge
+RUN conda install -c conda-forge poppler && conda clean -a
+#conda install --repodata-fn=repodata.json -c rapidsai -c nvidia -c conda-forge cugraph=22.10 cuml=22.10 poppler && conda remove --force ucx-py
 
 #RUN curl -fsSL https://get.docker.com/ | sh
 
 RUN curl -fsSL https://code-server.dev/install.sh | sh
+RUN curl -fsSL https://get.pnpm.io/install.sh | SHELL=`which bash` bash -
 
 EXPOSE 8443
 ADD jupyter_notebook_config.py /root/.jupyter/
@@ -67,6 +74,6 @@ RUN git config --global http.sslverify false
 #RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && locale-gen
 #ENV LANG en_US.UTF-8  
 #ENV LANGUAGE en_US:en  
-#ENV LC_ALL en_US.UTF-8     
+#ENV LC_ALL en_US.UTF-8
 
 ENTRYPOINT ["/start.sh"]
