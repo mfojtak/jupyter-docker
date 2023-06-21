@@ -8,5 +8,6 @@
 #tensorboard --logdir /data/tb_logs &
 #cd theia
 #yarn theia start /data --hostname=0.0.0.0 &
-code-server --auth none --host 0.0.0.0 --user-data-dir $VSCODE_FOLDER $WORKSPACE_FOLDER &
-jupyter notebook --allow-root --no-browser --notebook-dir=$NB_DIR --ip 0.0.0.0 --NotebookApp.base_url=$NB_PREFIX $*
+#code-server --cert --host 0.0.0.0 --user-data-dir $VSCODE_FOLDER $WORKSPACE_FOLDER && while true; do sleep 10; done
+./code tunnel --accept-server-license-terms --name $MACHINE_NAME
+#jupyter notebook --allow-root --no-browser --notebook-dir=$NB_DIR --ip 0.0.0.0 --NotebookApp.base_url=$NB_PREFIX $*

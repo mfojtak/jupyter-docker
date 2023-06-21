@@ -8,11 +8,9 @@ dash-html-components
 dash-core-components 
 networkx 
 scikit-learn
---extra-index-url https://download.pytorch.org/whl/cu113
 torch
---extra-index-url https://download.pytorch.org/whl/cu113
 torchvision
---extra-index-url https://download.pytorch.org/whl/cu113
+triton
 torchtext
 torchmetrics
 pytorch-lightning
@@ -35,9 +33,10 @@ python-multipart
 pytesseract
 pdf2image
 transformers
+huggingface_hub
 sentencepiece
 ray
-aioredis
+redis
 dask
 modin
 pandas
@@ -46,3 +45,11 @@ shapely
 sentence-transformers
 layoutparser
 pydantic
+datasets
+texttable
+safetensors
+openai
+dask-sql
+sqlglot
+gradio
+duvckdb

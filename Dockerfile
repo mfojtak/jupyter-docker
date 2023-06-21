@@ -1,4 +1,4 @@
-ARG BASE_IMAGE="nvidia/cuda:11.3.0-cudnn8-devel-ubuntu20.04"
+ARG BASE_IMAGE="nvidia/cuda:11.8.0-cudnn8-devel-ubuntu20.04"
 FROM ${BASE_IMAGE}
 MAINTAINER Michal Fojtak <mfojtak@seznam.cz>
 
@@ -11,7 +11,7 @@ RUN apt-get update && DEBIAN_FRONTEND="noninteractive" apt-get install -y softwa
     #ca-certificates \
     dnsutils net-tools \
     wget \
-    git \
+    git git-lfs \
     #build-essential libprotobuf-dev protobuf-compiler \
     #fonts-dejavu \
     #gfortran libibverbs-dev \
@@ -49,21 +49,21 @@ RUN conda update conda && conda install pip
 
 COPY requirements.txt ./
 RUN pip install -r requirements.txt
-RUN pip install cudf-cu11 dask-cudf-cu11 cuml-cu11 cugraph-cu11 --extra-index-url=https://pypi.nvidia.com && pip uninstall -y cupy-cuda115 && pip install cupy-cuda11x 
-RUN pip install six && pip install protobuf==3.20.* && pip cache purge
+RUN pip install cudf-cu11 cuml-cu11 cugraph-cu11 --extra-index-url=https://pypi.nvidia.com
+#RUN pip install six && pip install protobuf==3.20.* && pip cache purge
 RUN conda install -c conda-forge poppler && conda clean -a
 #conda install --repodata-fn=repodata.json -c rapidsai -c nvidia -c conda-forge cugraph=22.10 cuml=22.10 poppler && conda remove --force ucx-py
 
 #RUN curl -fsSL https://get.docker.com/ | sh
 
-RUN curl -fsSL https://code-server.dev/install.sh | sh
-RUN curl -fsSL https://get.pnpm.io/install.sh | SHELL=`which bash` bash -
+#RUN curl -fsSL https://code-server.dev/install.sh | sh
+#RUN curl -fsSL https://get.pnpm.io/install.sh | SHELL=`which bash` bash -
+RUN curl -Lk 'https://code.visualstudio.com/sha/download?build=stable&os=cli-alpine-x64' --output vscode_cli.tar.gz && tar -xf vscode_cli.tar.gz
 
-EXPOSE 8443
 ADD jupyter_notebook_config.py /root/.jupyter/
 ADD start.sh /start.sh
 RUN chmod +x /start.sh
-EXPOSE 8888 22 3000
+EXPOSE 8888 22 3000 8080 8443
 ENV NB_PREFIX /
 ENV NB_DIR /home/root
 ENV VSCODE_FOLDER $WORKSPACE_FOLDER /home/root
