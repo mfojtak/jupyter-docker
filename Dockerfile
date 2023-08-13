@@ -49,7 +49,7 @@ RUN conda update conda && conda install pip
 
 COPY requirements.txt ./
 RUN pip install -r requirements.txt
-RUN pip install cudf-cu11 cuml-cu11 cugraph-cu11 --extra-index-url=https://pypi.nvidia.com
+#RUN pip install cudf-cu11 cuml-cu11 cugraph-cu11 --extra-index-url https://pypi.nvidia.com
 #RUN pip install six && pip install protobuf==3.20.* && pip cache purge
 RUN conda install -c conda-forge poppler && conda clean -a
 #conda install --repodata-fn=repodata.json -c rapidsai -c nvidia -c conda-forge cugraph=22.10 cuml=22.10 poppler && conda remove --force ucx-py
